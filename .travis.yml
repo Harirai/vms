@@ -1,5 +1,7 @@
 language: python
 
+dist: xenial
+
 env:
   - MOZ_HEADLESS=1
 
@@ -11,6 +13,7 @@ python:
 
 services: postgresql
   - xvfb
+
 before_install:
   - bash setup-geckodriver.sh
 
