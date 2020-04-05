@@ -30,8 +30,9 @@ script:
   - python manage.py migrate --noinput --traceback --settings=vms.settings
   - python manage.py cities_light --force-import-all
   - flake8
-  - coverage run --source='.' manage.py test volunteer -v 2
-  - coverage report -m
+  - python manage.py shell
+  - import cities_light as cl
+  - cl.models.Country.objects.all()
+  - for i in cl.models.Country.objects.all():
+  -   print(i)
 
-after_success:
-    coveralls --rcfile=.coveragerc
