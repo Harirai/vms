@@ -16,7 +16,7 @@ Pillow==7.0.0
 progressbar2==3.50.0
 psycopg2==2.8.4
 psycopg2-binary==2.8.4
-pycodestyle==2.5.0
+pycodestyle==2.4.0
 pyflakes==1.5.0
 PyPDF2==1.26.0
 python-decouple==3.3
