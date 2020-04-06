@@ -5,8 +5,10 @@ import unittest
 from shift.utils import (create_volunteer_with_details,
                          create_organization_with_details, clear_objects,
                          register_event_utility, register_job_utility,
-                         register_shift_utility, register_volunteer_for_shift_utility, create_country, create_state, create_city,
-                         create_second_country, create_second_state, create_second_city)
+                         register_shift_utility, register_volunteer_for_shift_utility,
+                         create_country, create_state, create_city,
+                         create_second_country, create_second_state,
+                         create_second_city)
 from volunteer.services import (delete_volunteer, delete_volunteer_resume,
                                 get_all_volunteers, get_volunteer_by_id,
                                 get_volunteer_resume_file_url,
