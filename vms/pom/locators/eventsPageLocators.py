@@ -25,7 +25,7 @@ class EventsPageLocators(object):
     DELETE_EVENT = '//table//tbody//tr[1]//td[6]'
     DELETION_BOX = 'panel-danger'
     DELETION_TOPIC = 'panel-heading'
-    WARNING_CONTEXT = 'info'
+    WARNING_CONTEXT = 'messages'
     TEMPLATE_ERROR_MESSAGE = '//div[2]/div[3]/p'
     DANGER_BOX = 'alert-danger'
     RESULTS = '//table//tbody'

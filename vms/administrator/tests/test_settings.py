@@ -1,4 +1,6 @@
 # third party
+from time import sleep
+
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.firefox.options import Options
@@ -331,6 +333,7 @@ class Settings(LiveServerTestCase):
             self.driver.current_url,
             self.live_server_url + settings.event_list_page
         )
+        sleep(5)
         self.assertEqual(
             settings.get_warning_context(),
             "Start date should be today's date or later."
@@ -359,6 +362,7 @@ class Settings(LiveServerTestCase):
             self.driver.current_url,
             self.live_server_url + settings.event_list_page
         )
+        sleep(5)
         self.assertEqual(
             settings.get_warning_context(),
             "Start date should be today's date or later."
