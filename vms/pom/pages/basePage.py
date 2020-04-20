@@ -21,7 +21,7 @@ class BasePage(object):
         self.driver = driver
 
     # New function to check if Element is visible before calling it
-    def is_visible(self, element, timeout=10):
+    def is_visible(self, element, timeout=20):
         try:
             WebDriverWait(self.driver,
                           timeout).until(ec.visibility_of_element_located((By.XPATH,
