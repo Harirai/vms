@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as ec
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
 
 class BasePage(object):
@@ -21,14 +21,14 @@ class BasePage(object):
         self.driver = driver
 
     # New function to check if Element is visible before calling it
-    def is_visible(self, element, timeout=20):
+    def is_visible(self, element, timeout=5):
         try:
-            WebDriverWait(self.driver,
-                          timeout).until(ec.visibility_of_element_located((By.XPATH,
-                                                                           element)))
+            wait(self.driver,
+                 timeout).until(ec.visibility_of_element_located((By.XPATH,
+                                                                  element)))
             return True
-        except NoSuchElementException:
-            return False
+        except TimeoutException:
+            return NoSuchElementException
 
     def send_value_to_element_id(self, key, value):
         self.driver.find_element_by_id(key).send_keys(value)
