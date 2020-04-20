@@ -1,3 +1,9 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.common.exceptions import NoSuchElementException
+
+
 class BasePage(object):
     """
     Base class to initialize the base page
@@ -14,6 +20,14 @@ class BasePage(object):
     def __init__(self, driver):
         self.driver = driver
 
+    # New function to check if Element is visible before calling it
+    def is_visible(self, element, timeout=5):
+        try:
+            WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located((By.XPATH, element)))
+            return True
+        except TimeoutError:
+            return False
+
     def send_value_to_element_id(self, key, value):
         self.driver.find_element_by_id(key).send_keys(value)
 
@@ -21,7 +35,10 @@ class BasePage(object):
         self.driver.find_element_by_xpath(key).send_keys(value)
 
     def element_by_xpath(self, path):
-        return self.driver.find_element_by_xpath(path)
+        if self.is_visible(path):
+            return self.driver.find_element_by_xpath(path)
+        else:
+            raise NoSuchElementException
 
     def elements_by_xpath(self, path):
         elements = self.driver.find_elements_by_xpath(path)
