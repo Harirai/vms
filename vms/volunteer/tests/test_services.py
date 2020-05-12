@@ -9,7 +9,8 @@ from shift.utils import (create_volunteer_with_details,
                          register_volunteer_for_shift_utility,
                          create_country, create_state, create_city,
                          create_second_country, create_second_state,
-                         create_second_city)
+                         create_second_city, get_country_by_name,
+                         get_state_by_name, get_city_by_name)
 from volunteer.services import (delete_volunteer, delete_volunteer_resume,
                                 get_all_volunteers, get_volunteer_by_id,
                                 get_volunteer_resume_file_url,
@@ -234,12 +235,21 @@ class VolunteerMethodTests(unittest.TestCase):
 class DeleteVolunteerTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # country_name = 'United States'
-        country = create_second_country()
-        # state_name = 'Washington'
-        state = create_second_state()
-        # city_name = 'Bothell'
-        city = create_second_city()
+        country_name = 'United States'
+        try:
+            country = create_second_country()
+        except KeyError:
+            country = get_country_by_name(country_name)
+        state_name = 'Washington'
+        try:
+            state = create_second_state()
+        except KeyError:
+            state = get_state_by_name(state_name)
+        city_name = 'Bothell'
+        try:
+            city = create_second_city()
+        except KeyError:
+            city = get_city_by_name(city_name)
         volunteer_1 = {
             'username': 'Margaret',
             'first_name': "Yoshi",
